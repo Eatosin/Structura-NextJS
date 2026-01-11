@@ -15,9 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // "dark" class here is the Magic Fix for your UI
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-black text-white antialiased`}>
+    <html lang="en">
+      <body className={`${inter.className} antialiased`}>
         {children}
       </body>
     </html>
