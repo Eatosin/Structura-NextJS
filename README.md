@@ -69,3 +69,5 @@ npm run dev
 
 *   **Portfolio:** [GitHub](https://github.com/eatosin)
 *   **Connect:** [LinkedIn](https://www.linkedin.com/in/owadokun-tosin-tobi-6159091a3)
+
+🔗 **Prefer the original Python version?** Check out **[Structura v1 (FastHTML + PydanticAI)](https://github.com/Eatosin/Structura)** — Lightweight, mobile-friendly, zero-cost prototype.
