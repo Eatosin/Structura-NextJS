@@ -28,7 +28,7 @@ Re-engineered using **Next.js 15** and the **Vercel AI SDK**, this version deliv
 | **Framework** | **Next.js 15 (App Router)** | React Server Components for optimal performance. |
 | **AI Runtime** | **Vercel AI SDK** | The industry standard for streaming AI responses in JS/TS. |
 | **Validation** | **Zod** | TypeScript-native schema validation (The "Pydantic" of the web). |
-| **Intelligence** | **Gemini 1.5 Flash** | Fast, cost-effective inference. |
+| **Intelligence** | **Gemini 2.5 Flash** | Fast, cost-effective inference. |
 | **Styling** | **Tailwind CSS** | Utility-first styling for rapid UI development. |
 
 ## ⚙️ How it Works
