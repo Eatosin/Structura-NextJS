@@ -1,14 +1,33 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function Home() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   async function handleExtract() {
-    if (!input) return;
+    if (!input.trim()) {
+      setError('Please enter some text to extract.');
+      return;
+    }
+
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    abortControllerRef.current = new AbortController();
+    
     setLoading(true);
     setError('');
     setResult(null);
@@ -16,7 +35,11 @@ export default function Home() {
     try {
       const response = await fetch('/api/extract', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ text: input }),
+        signal: abortControllerRef.current.signal,
       });
 
       if (!response.ok) throw new Error('Extraction failed');
@@ -24,9 +47,13 @@ export default function Home() {
       const data = await response.json();
       setResult(data);
     } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') {
+        return;
+      }
       setError('Error: Could not extract data. Check API Key.');
     } finally {
       setLoading(false);
+      abortControllerRef.current = null;
     }
   }
 
